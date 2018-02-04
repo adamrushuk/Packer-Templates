@@ -3,3 +3,6 @@ packer_cache/
 
 # For built boxes
 *.box
+
+# VM Output folders
+output*
