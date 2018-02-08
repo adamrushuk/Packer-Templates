@@ -1,0 +1,67 @@
+{
+  "variables": {
+    "os_name": "win2012r2",
+    "image_name": "powershell5-vagrant",
+    "source_path": "./output-win2012r2-powershell5/win2012r2-powershell5.ovf",
+    "headless": "false"
+  },
+  "builders": [
+    {
+      "type": "virtualbox-ovf",
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--memory",
+          "2048"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vram",
+          "48"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--cpus",
+          "2"
+        ]
+      ],
+      "source_path": "{{user `source_path`}}",
+      "vm_name": "{{ user `os_name` }}-{{ user `image_name` }}",
+      "guest_additions_mode": "disable",
+      "headless": "{{ user `headless` }}",
+      "communicator": "winrm",
+      "winrm_username": "vagrant",
+      "winrm_password": "vagrant",
+      "winrm_timeout": "8h",
+      "shutdown_command": "a:/PackerShutdown.bat",
+      "shutdown_timeout": "15m",
+      "output_directory": "./output-{{ user `os_name` }}-{{ user `image_name` }}/",
+      "floppy_files": [
+        "Scripts/UK-postunattend.xml",
+        "Scripts/SetupComplete-2012.cmd",
+        "Scripts/PackerShutdown.bat"
+      ]
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "powershell",
+      "elevated_user": "vagrant",
+      "elevated_password": "vagrant",
+      "script": "Scripts/Set-Sysprep.ps1"
+    }
+  ],
+  "post-processors": [
+    [
+      {
+        "type": "vagrant",
+        "keep_input_artifact": true,
+        "output": "./output-{{ user `os_name` }}-{{ user `image_name` }}/Win2012R2-Std-WMF5-Full.box",
+        "vagrantfile_template": "windows-template.vagrantfile"
+      }
+    ]
+  ]
+}
