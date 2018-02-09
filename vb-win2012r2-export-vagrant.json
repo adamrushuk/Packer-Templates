@@ -3,7 +3,7 @@
     "os_name": "win2012r2",
     "image_name": "powershell5-vagrant",
     "source_path": "./output-win2012r2-powershell5/win2012r2-powershell5.ovf",
-    "headless": "false"
+    "headless": "true"
   },
   "builders": [
     {
