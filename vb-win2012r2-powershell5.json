@@ -3,7 +3,7 @@
     "os_name": "win2012r2",
     "image_name": "powershell5",
     "source_path": "./output-win2012r2-base/win2012r2-base.ovf",
-    "headless": "false"
+    "headless": "true"
   },
   "builders": [
     {
@@ -55,6 +55,12 @@
     {
       "type": "windows-restart",
       "restart_timeout": "1h"
+    },
+    {
+      "elevated_password": "vagrant",
+      "elevated_user": "vagrant",
+      "script": "scripts/cleanup.ps1",
+      "type": "powershell"
     }
   ]
 }
