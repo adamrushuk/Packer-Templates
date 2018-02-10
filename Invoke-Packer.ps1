@@ -6,7 +6,7 @@ foreach ($packerConfigPath in $packerConfigPaths) {
 
     # Enable logging
     Write-Host 'Set logging environment variables...' -ForegroundColor Yellow
-    $timestamp = Get-Date -Format 'yyyyMMdd-HHmmss'
+    $timestamp = Get-Date -Format 'yyyyMMdd-HHmmss.fff'
     $env:PACKER_LOG = 1
     $env:PACKER_LOG_PATH = ".\logs\packer-$($timestamp).log"
     # Check environment vars
