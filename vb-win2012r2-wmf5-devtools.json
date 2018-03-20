@@ -1,0 +1,70 @@
+{
+  "variables": {
+    "os_name": "win2012r2",
+    "image_name": "wmf5-devtools",
+    "source_path": "./output-win2012r2-base/win2012r2-base.ovf",
+    "headless": "true"
+  },
+  "builders": [
+    {
+      "type": "virtualbox-ovf",
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--memory",
+          "2048"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vram",
+          "48"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--cpus",
+          "2"
+        ]
+      ],
+      "source_path": "{{user `source_path`}}",
+      "vm_name": "{{ user `os_name` }}-{{ user `image_name` }}",
+      "guest_additions_mode": "disable",
+      "headless": "{{ user `headless` }}",
+      "communicator": "winrm",
+      "winrm_username": "vagrant",
+      "winrm_password": "vagrant",
+      "winrm_timeout": "1h",
+      "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
+      "shutdown_timeout": "1h",
+      "output_directory": "./output-{{ user `os_name` }}-{{ user `image_name` }}/"
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "powershell",
+      "elevated_user": "vagrant",
+      "elevated_password": "vagrant",
+      "script": "Scripts/Install-PowerShell5.ps1",
+      "valid_exit_codes": [
+        0,
+        3010
+      ]
+    },
+    {
+      "type": "windows-restart",
+      "restart_timeout": "1h"
+    },
+    {
+      "type": "powershell",
+      "elevated_user": "vagrant",
+      "elevated_password": "vagrant",
+      "script": "Scripts/Install-DevTools.ps1",
+      "valid_exit_codes": [
+        0,
+        3010
+      ]
+    }
+  ]
+}

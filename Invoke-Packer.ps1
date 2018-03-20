@@ -1,5 +1,7 @@
 # Vars
-$packerConfigPaths = '.\vb-win2012r2-base.json', '.\vb-win2012r2-powershell5.json', '.\vb-win2012r2-export-vagrant.json'
+$packerConfigPaths = '.\vb-win2012r2-base.json', '.\vb-win2012r2-powershell5.json', '.\vb-win2012r2-wmf5-devtools.json', '.\vb-win2012r2-export-vagrant.json'
+#$packerConfigPaths = '.\vb-win2012r2-wmf5-devtools.json', '.\vb-win2012r2-export-vagrant.json'
+#$packerConfigPaths = '.\vb-win2012r2-export-vagrant.json'
 
 # Start packer build for all configs
 foreach ($packerConfigPath in $packerConfigPaths) {
@@ -18,6 +20,6 @@ foreach ($packerConfigPath in $packerConfigPaths) {
 
     # Run Packer
     Write-Host "`nRunning Packer using [$packerConfigPath] config file..." -ForegroundColor Green
-    packer build -on-error=abort $packerConfigPath
+    packer build -force $packerConfigPath
 
 }
