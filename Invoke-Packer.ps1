@@ -1,5 +1,6 @@
 # Vars
-$packerConfigPaths = '.\vb-win2012r2-base.json', '.\vb-win2012r2-powershell5.json', '.\vb-win2012r2-wmf5-devtools.json', '.\vb-win2012r2-export-vagrant.json'
+#$packerConfigPaths = '.\vb-win2012r2-base.json', '.\vb-win2012r2-powershell5.json', '.\vb-win2012r2-export-vagrant.json'
+$packerConfigPaths = '.\vb-win2012r2-base.json', '.\vb-win2012r2-wmf5-devtools.json', '.\vb-win2012r2-export-vagrant.json'
 #$packerConfigPaths = '.\vb-win2012r2-wmf5-devtools.json', '.\vb-win2012r2-export-vagrant.json'
 #$packerConfigPaths = '.\vb-win2012r2-export-vagrant.json'
 

@@ -2,7 +2,7 @@
   "variables": {
     "os_name": "win2012r2",
     "image_name": "powershell5-vagrant",
-    "source_path": "./output-win2012r2-powershell5/win2012r2-powershell5.ovf",
+    "source_path": "./output-win2012r2-wmf5-devtools/win2012r2-wmf5-devtools.ovf",
     "headless": "true"
   },
   "builders": [
@@ -49,6 +49,12 @@
   "provisioners": [
     {
       "type": "powershell",
+      "elevated_password": "vagrant",
+      "elevated_user": "vagrant",
+      "script": "scripts/cleanup.ps1"
+    },
+    {
+      "type": "powershell",
       "elevated_user": "vagrant",
       "elevated_password": "vagrant",
       "script": "Scripts/Set-Sysprep.ps1"
@@ -59,7 +65,7 @@
       {
         "type": "vagrant",
         "keep_input_artifact": true,
-        "output": "./output-{{ user `os_name` }}-{{ user `image_name` }}/Win2012R2-Std-WMF5-Full.box",
+        "output": "./output-{{ user `os_name` }}-{{ user `image_name` }}/Win2012R2-Std-WMF5-Dev.box",
         "vagrantfile_template": "windows-template.vagrantfile"
       }
     ]
