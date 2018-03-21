@@ -1,7 +1,14 @@
 # Install Dev Tools
-Write-Host "Installing Dev Tools" -ForegroundColor 'Green'
-choco install sysinternals treesizefree cmder notepadplusplus.install putty git.install poshgit -y
+Write-Host "`nSTARTED: Installing Dev Tools..." -ForegroundColor 'Yellow'
+choco install sysinternals treesizefree cmder notepadplusplus.install putty git.install poshgit visualstudiocode -y
 
-Write-Host 'Installing VS Code and extensions' -ForegroundColor 'Green'
-Install-Script 'Install-VSCode' -Scope 'AllUsers' -Verbose -Force
-Install-VSCode.ps1 -AdditionalExtensions 'eamodio.gitlens', 'DotJoshJohnson.xml', 'robertohuertasm.vscode-icons'
+Write-Host 'Installing VS Code extensions...' -ForegroundColor 'Yellow'
+$codeCmdPath = Join-Path -Path $env:ProgramFiles -ChildPath 'Microsoft VS Code\bin\code.cmd'
+$extensions = 'ms-vscode.PowerShell', 'eamodio.gitlens', 'DotJoshJohnson.xml', 'robertohuertasm.vscode-icons'
+
+foreach ($extension in $extensions) {
+    Write-Host "`nInstalling extension $extension..." -ForegroundColor 'Yellow'
+    & $codeCmdPath --install-extension $extension
+}
+
+Write-Host "`nFINISHED: Installing Dev Tools." -ForegroundColor 'Green'
