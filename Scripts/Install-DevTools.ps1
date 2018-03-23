@@ -1,6 +1,6 @@
 # Install Dev Tools
 Write-Host "`nSTARTED: Installing Dev Tools..." -ForegroundColor 'Yellow'
-choco install sysinternals treesizefree cmder notepadplusplus.install putty git.install poshgit visualstudiocode -y
+choco install sysinternals treesizefree cmder notepadplusplus.install putty git.install poshgit visualstudiocode 7zip.install -y
 
 Write-Host 'Installing VS Code extensions...' -ForegroundColor 'Yellow'
 $codeCmdPath = Join-Path -Path $env:ProgramFiles -ChildPath 'Microsoft VS Code\bin\code.cmd'
