@@ -6,3 +6,7 @@ packer_cache/
 
 # VM Output folders
 output*
+
+# Misc
+/.vscode
+/.vagrant

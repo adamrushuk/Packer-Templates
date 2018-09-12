@@ -1,9 +1,9 @@
 {
   "variables": {
-    "os_name": "win2012r2",
-    "image_name": "wmf5-dev-clean",
-    "vagrant_box_version": "0.2.1",
-    "source_path": "./output-win2012r2-wmf5-devtools/win2012r2-wmf5-devtools.ovf",
+    "os_name": "win2016",
+    "image_name": "dev",
+    "vagrant_box_version": "1809.0.0",
+    "source_path": "./output-win2016-devtools/win2016-devtools.ovf",
     "headless": "true"
   },
   "builders": [
@@ -39,7 +39,7 @@
       "winrm_timeout": "8h",
       "shutdown_command": "a:/PackerShutdown.bat",
       "shutdown_timeout": "15m",
-      "output_directory": "./output-{{ user `os_name` }}-{{ user `image_name` }}/",
+      "output_directory": "./output-{{ user `os_name` }}-{{ user `image_name` }}-{{ user `vagrant_box_version` }}/",
       "floppy_files": [
         "Scripts/UK-postunattend.xml",
         "Scripts/SetupComplete-2012.cmd",
@@ -50,14 +50,10 @@
   "provisioners": [
     {
       "type": "powershell",
-      "elevated_password": "vagrant",
-      "elevated_user": "vagrant",
       "script": "scripts/cleanup.ps1"
     },
     {
       "type": "powershell",
-      "elevated_user": "vagrant",
-      "elevated_password": "vagrant",
       "script": "Scripts/Set-Sysprep.ps1"
     }
   ],
@@ -66,7 +62,7 @@
       {
         "type": "vagrant",
         "keep_input_artifact": true,
-        "output": "./output-{{ user `os_name` }}-{{ user `image_name` }}/Win2012R2-Std-WMF5-Dev.box",
+        "output": "./output-{{ user `os_name` }}-{{ user `image_name` }}-{{ user `vagrant_box_version` }}/win2016-std-dev-{{ user `vagrant_box_version` }}.box",
         "vagrantfile_template": "windows-template.vagrantfile"
       }
     ]
