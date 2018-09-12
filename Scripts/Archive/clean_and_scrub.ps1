@@ -1,19 +1,19 @@
-Write-Host "Cleaning updates.." -ForegroundColor 'Cyan'
+Write-Host "Cleaning updates.."
 Stop-Service -Name wuauserv -Force
 Remove-Item c:\Windows\SoftwareDistribution\Download\* -Recurse -Force
 Start-Service -Name wuauserv
 
-# Write-Host "Cleaning SxS..." -ForegroundColor 'Cyan'
-# Dism.exe /online /Cleanup-Image /StartComponentCleanup /ResetBase
+Write-Host "Cleaning SxS..."
+Dism.exe /online /Cleanup-Image /StartComponentCleanup /ResetBase
 
 @(
     "$env:localappdata\Nuget",
     "$env:localappdata\temp\*",
-    #"$env:windir\logs",
+    "$env:windir\logs",
     "$env:windir\panther",
     "$env:windir\temp\*",
     "$env:windir\winsxs\manifestcache"
-) | ForEach-Object {
+) | % {
     if (Test-Path $_) {
         Write-Host "Removing $_"
         try {
@@ -25,14 +25,7 @@ Start-Service -Name wuauserv
     }
 }
 
-# Write-Host "Disabling ngen scheduled task" -ForegroundColor 'Cyan'
-# $ngen = Get-ScheduledTask '.NET Framework NGEN v4.0.30319', '.NET Framework NGEN v4.0.30319 64'
-# $ngen | Disable-ScheduledTask
-
-# Write-Host "Running ngen.exe" -ForegroundColor 'Cyan'
-# . c:\Windows\Microsoft.NET\Framework64\v4.0.30319\ngen.exe executeQueuedItems
-
-Write-Host "defragging..." -ForegroundColor 'Cyan'
+Write-Host "defragging..."
 if (Get-Command Optimize-Volume -ErrorAction SilentlyContinue) {
     Optimize-Volume -DriveLetter C
 }
@@ -40,7 +33,7 @@ else {
     Defrag.exe c: /H
 }
 
-Write-Host "0ing out empty space..." -ForegroundColor 'Cyan'
+Write-Host "0ing out empty space..."
 $FilePath = "c:\zero.tmp"
 $Volume = Get-WmiObject win32_logicaldisk -filter "DeviceID='C:'"
 $ArraySize = 64kb
@@ -62,4 +55,4 @@ finally {
     }
 }
 
-Remove-Item $FilePath
+Del $FilePath

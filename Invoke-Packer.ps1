@@ -1,8 +1,13 @@
 # Vars
 #$packerConfigPaths = '.\vb-win2012r2-base.json', '.\vb-win2012r2-powershell5.json', '.\vb-win2012r2-export-vagrant.json'
-$packerConfigPaths = '.\vb-win2012r2-base.json', '.\vb-win2012r2-wmf5-devtools.json', '.\vb-win2012r2-export-vagrant.json'
+#$packerConfigPaths = '.\vb-win2012r2-base.json', '.\vb-win2012r2-wmf5-devtools.json', '.\vb-win2012r2-export-vagrant.json'
 #$packerConfigPaths = '.\vb-win2012r2-wmf5-devtools.json', '.\vb-win2012r2-export-vagrant.json'
 #$packerConfigPaths = '.\vb-win2012r2-export-vagrant.json'
+
+# Note Win2016 source repo for base OVF is: D:\Code\GitHub\windows_2016
+# $packerConfigPaths = '.\vb-win2016-devtools.json'
+$packerConfigPaths = '.\vb-win2016-devtools.json', '.\vb-win2016-export-vagrant.json'
+# $packerConfigPaths = '.\vb-win2016-export-vagrant.json'
 
 # Start packer build for all configs
 foreach ($packerConfigPath in $packerConfigPaths) {

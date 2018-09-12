@@ -8,7 +8,11 @@ Vagrant.configure(2) do |config|
 
   config.vm.provider "virtualbox" do |vb|
     vb.gui = true
-    vb.memory = 1024
+    vb.customize ["modifyvm", :id, "--memory", 2048]
+    vb.customize ["modifyvm", :id, "--cpus", 2]
+    vb.customize ["modifyvm", :id, "--vram", 128]
+    vb.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
+    vb.customize ["setextradata", "global", "GUI/SuppressMessages", "all" ]
   end
 
   config.vm.provider 'hyperv' do |hv|

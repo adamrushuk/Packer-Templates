@@ -3,13 +3,13 @@ Stop-Service -Name wuauserv -Force
 Remove-Item c:\Windows\SoftwareDistribution\Download\* -Recurse -Force
 Start-Service -Name wuauserv
 
-# Write-Host "Cleaning SxS..." -ForegroundColor 'Cyan'
-# Dism.exe /online /Cleanup-Image /StartComponentCleanup /ResetBase
+Write-Host "Cleaning SxS..." -ForegroundColor 'Cyan'
+Dism.exe /online /Cleanup-Image /StartComponentCleanup /ResetBase
 
 @(
     "$env:localappdata\Nuget",
     "$env:localappdata\temp\*",
-    #"$env:windir\logs",
+    "$env:windir\logs",
     "$env:windir\panther",
     "$env:windir\temp\*",
     "$env:windir\winsxs\manifestcache"
@@ -25,12 +25,12 @@ Start-Service -Name wuauserv
     }
 }
 
-# Write-Host "Disabling ngen scheduled task" -ForegroundColor 'Cyan'
-# $ngen = Get-ScheduledTask '.NET Framework NGEN v4.0.30319', '.NET Framework NGEN v4.0.30319 64'
-# $ngen | Disable-ScheduledTask
+Write-Host "Disabling ngen scheduled task" -ForegroundColor 'Cyan'
+$ngen = Get-ScheduledTask '.NET Framework NGEN v4.0.30319', '.NET Framework NGEN v4.0.30319 64'
+$ngen | Disable-ScheduledTask
 
-# Write-Host "Running ngen.exe" -ForegroundColor 'Cyan'
-# . c:\Windows\Microsoft.NET\Framework64\v4.0.30319\ngen.exe executeQueuedItems
+Write-Host "Running ngen.exe" -ForegroundColor 'Cyan'
+. c:\Windows\Microsoft.NET\Framework64\v4.0.30319\ngen.exe executeQueuedItems
 
 Write-Host "defragging..." -ForegroundColor 'Cyan'
 if (Get-Command Optimize-Volume -ErrorAction SilentlyContinue) {

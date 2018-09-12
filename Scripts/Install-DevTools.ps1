@@ -1,10 +1,31 @@
+# Install chocolatey
+if (-not [bool](Get-Command 'choco' -ErrorAction 'SilentlyContinue')) {
+    Set-ExecutionPolicy Bypass -Scope Process -Force; Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+}
+
 # Install Dev Tools
 Write-Host "`nSTARTED: Installing Dev Tools..." -ForegroundColor 'Yellow'
-choco install sysinternals treesizefree cmder notepadplusplus.install putty git.install poshgit visualstudiocode 7zip.install -y
+choco install sysinternals treesizefree cmdermini notepadplusplus.install putty mremoteng git.install poshgit visualstudiocode 7zip.install chefdk lockhunter -y
 
 Write-Host 'Installing VS Code extensions...' -ForegroundColor 'Yellow'
 $codeCmdPath = Join-Path -Path $env:ProgramFiles -ChildPath 'Microsoft VS Code\bin\code.cmd'
-$extensions = 'ms-vscode.PowerShell', 'eamodio.gitlens', 'DotJoshJohnson.xml', 'robertohuertasm.vscode-icons'
+$extensions = @(
+    'aaron-bond.better-comments'
+    'bierner.markdown-preview-github-styles'
+    'CoenraadS.bracket-pair-colorizer'
+    'davidanson.vscode-markdownlint'
+    'DotJoshJohnson.xml'
+    'drmattsm.replace-smart-characters'
+    'eamodio.gitlens'
+    'grapecity.gc-excelviewer'
+    'marcostazi.vs-code-vagrantfile'
+    'ms-vscode.PowerShell'
+    'robertohuertasm.vscode-icons'
+    'sidneys1.gitconfig'
+    'stkb.rewrap'
+    'wengerk.highlight-bad-chars'
+    'yzhang.markdown-all-in-one'
+)
 
 foreach ($extension in $extensions) {
     Write-Host "`nInstalling extension $extension..." -ForegroundColor 'Yellow'
