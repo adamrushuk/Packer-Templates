@@ -12,7 +12,7 @@ $codeCmdPath = Join-Path -Path $env:ProgramFiles -ChildPath 'Microsoft VS Code\b
 $extensions = @(
     'aaron-bond.better-comments'
     'bierner.markdown-preview-github-styles'
-    'CoenraadS.bracket-pair-colorizer'
+    'coenraads.bracket-pair-colorizer-2'
     'davidanson.vscode-markdownlint'
     'DotJoshJohnson.xml'
     'drmattsm.replace-smart-characters'

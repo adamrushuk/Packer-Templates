@@ -31,7 +31,7 @@ A fully patched Windows Server 2016 (Standard) box, with useful development tool
 - VSCode Extensions installed: 
 `aaron-bond.better-comments`, 
 `bierner.markdown-preview-github-styles`, 
-`CoenraadS.bracket-pair-colorizer`, 
+`coenraads.bracket-pair-colorizer-2`, 
 `davidanson.vscode-markdownlint`, 
 `DotJoshJohnson.xml`, 
 `drmattsm.replace-smart-characters`, 
