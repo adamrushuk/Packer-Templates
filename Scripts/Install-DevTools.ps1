@@ -17,6 +17,7 @@ $extensions = @(
     'DotJoshJohnson.xml'
     'drmattsm.replace-smart-characters'
     'eamodio.gitlens'
+    'esbenp.prettier-vscode'
     'grapecity.gc-excelviewer'
     'marcostazi.vs-code-vagrantfile'
     'ms-vscode.PowerShell'
