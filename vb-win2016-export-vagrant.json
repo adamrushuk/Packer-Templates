@@ -1,9 +1,9 @@
 {
   "variables": {
     "os_name": "win2016",
-    "image_name": "dev",
-    "vagrant_box_version": "1809.0.0",
-    "source_path": "./output-win2016-devtools/win2016-devtools.ovf",
+    "image_name": "std-dev",
+    "vagrant_box_version": "1809.2.1",
+    "source_path": "./output-win2016-std-dev/win2016-std-dev.ovf",
     "headless": "true"
   },
   "builders": [

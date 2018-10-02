@@ -1,7 +1,7 @@
 {
   "variables": {
     "os_name": "win2016",
-    "image_name": "devtools",
+    "image_name": "std-dev",
     "source_path": "./output-win2016-base/WindowsServer2016.ovf",
     "headless": "false"
   },
