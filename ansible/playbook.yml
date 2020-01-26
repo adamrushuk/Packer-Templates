@@ -1,0 +1,25 @@
+- name: Install the required things
+  hosts: all
+  tasks:
+    - name: Make sure the print spooler service is running
+      win_service:
+        name: spooler
+        state: started
+      tags:
+        - mytag
+
+    - name: On windows hosts, make sure the telnet client is installed
+      win_feature:
+        name: telnet-client
+      when: ansible_os_family == 'Windows'
+      register: telnet_client
+
+    - name: Print some stuff
+      debug:
+        msg: "Telnet client was installed"
+      when: telnet_client.changed
+
+    - name: Print some other stuff
+      debug:
+        msg: "Telnet client was already present"
+      when: telnet_client.changed == False
