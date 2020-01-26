@@ -37,7 +37,7 @@ foreach ($packerConfigPath in $Path) {
     Write-Host "Set logging environment variables..." -ForegroundColor "Yellow"
     $timestamp = Get-Date -Format "yyyyMMdd-HHmmss.fff"
     $env:PACKER_LOG = 1
-    $env:PACKER_LOG_PATH = ".\logs\packer-$($timestamp).log"
+    $env:PACKER_LOG_PATH = "./Logs/packer-$($timestamp).log"
     # Check environment vars
     Get-ChildItem env: | Where-Object Name -match "packer"
 
