@@ -1,0 +1,9 @@
+---
+
+ansible_user: packer
+ansible_password: 6YmNC5v2f!^o2qEPKmjo4IJR0PQrIoci
+ansible_port: 5986
+ansible_connection: winrm
+#ansible_winrm_transport: ntlm
+#ansible_winrm_transport: credssp
+ansible_winrm_server_cert_validation: ignore
