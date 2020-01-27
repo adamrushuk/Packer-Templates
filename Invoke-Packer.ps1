@@ -47,7 +47,7 @@ foreach ($packerConfigPath in $Path) {
 
     # Run Packer
     Write-Host "`nRunning Packer using [$packerConfigPath] config file..." -ForegroundColor "Yellow"
-    packer build -force $packerConfigPath
+    packer build -on-error=abort -color=false -force $packerConfigPath
 }
 
 # Stop timer

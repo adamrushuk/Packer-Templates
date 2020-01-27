@@ -1,9 +1,11 @@
 ---
 
 ansible_user: packer
-ansible_password: 6YmNC5v2f!^o2qEPKmjo4IJR0PQrIoci
-ansible_port: 5986
+ansible_password: SuperSecretPa55w0rd!
 ansible_connection: winrm
-#ansible_winrm_transport: ntlm
-#ansible_winrm_transport: credssp
+ansible_port: 5986
+ansible_winrm_transport: ntlm
 ansible_winrm_server_cert_validation: ignore
+
+# These are not needed for connection to Azure VM
+# ansible_winrm_message_encryption: always
