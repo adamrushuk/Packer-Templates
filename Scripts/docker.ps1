@@ -32,6 +32,8 @@ cat ./ansible/hosts
 cat ./ansible/playbook.yml
 ansible-playbook -vvvvv -i ./ansible/hosts ./ansible/playbook.yml
 
+ansible-playbook -vvvvv ./ansible/playbook.yml -i 10.10.10.10,
+
 ipAddress="51.104.236.42"
 curl -v telnet://$ipAddress:5985
 curl -v telnet://$ipAddress:5986

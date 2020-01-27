@@ -1,5 +1,14 @@
 - name: Install the required things
   hosts: all
+
+  # vars:
+  #   ansible_user: azureuser
+  #   ansible_password: 'P@ssw0rdUseVaultorVarPrompt'
+  #   ansible_connection: winrm
+  #   ansible_port: 5986
+  #   ansible_winrm_transport: ntlm
+  #   ansible_winrm_server_cert_validation: ignore
+
   tasks:
     - name: Make sure the print spooler service is running
       win_service:
