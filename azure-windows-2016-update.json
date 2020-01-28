@@ -2,7 +2,7 @@
   "variables": {
     "location": "uksouth",
     "resource_group_name": "packertest-rg",
-    "image_name": "Win2016Updated",
+    "image_name": "Win2016withUpdates",
     "vm_size": "Standard_DS2_v2",
     "tenant_id": "{{env `ARM_TENANT_ID`}}",
     "subscription_id": "{{env `ARM_SUBSCRIPTION_ID`}}",
@@ -25,7 +25,7 @@
       "communicator": "winrm",
       "winrm_use_ssl": "true",
       "winrm_insecure": "true",
-      "winrm_timeout": "30m",
+      "winrm_timeout": "1h",
       "winrm_username": "packer",
       "location": "{{user `location`}}",
       "vm_size": "{{user `vm_size`}}"
