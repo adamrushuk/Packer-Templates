@@ -1,6 +1,10 @@
 #!/bin/bash
 # initialise azure for packer usage
 
+# vars
+resource_group_name="packertest-rg"
+location_name="uksouth"
+
 # login
 az login
 
@@ -15,4 +19,4 @@ export ARM_CLIENT_SECRET=$(echo "$sp_json" | jq -r ".client_secret")
 # printenv | grep ARM
 
 # create resource group (make sure values match packer config)
-az group create -n packertest-rg -l uksouth
+az group create -n $resource_group_name -l $location_name

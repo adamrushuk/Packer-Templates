@@ -2,7 +2,7 @@
     "variables": {
         "location": "uksouth",
         "resource_group_name": "packertest-rg",
-        "image_name": "Rhel7Image",
+        "image_name": "UbuntuImage",
         "vm_size": "Standard_DS2_v2",
 
         "tenant_id": "{{env `ARM_TENANT_ID`}}",
@@ -22,9 +22,9 @@
       "managed_image_name": "{{user `image_name`}}",
 
       "os_type": "Linux",
-      "image_publisher": "RedHat",
-      "image_offer": "RHEL",
-      "image_sku": "7-RAW-CI",
+      "image_publisher": "Canonical",
+      "image_offer": "UbuntuServer",
+      "image_sku": "18.04-LTS",
 
       "azure_tags": {
           "environment": "dev",
@@ -41,15 +41,12 @@
         {
             "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E sh '{{ .Path }}'",
             "inline": [
-                "echo 'sleeping for 2m'",
-                "sleep 2m"
+                "apt-get update",
+                "apt-get upgrade -y",
+                "apt-get -y install nginx"
             ],
             "inline_shebang": "/bin/sh -x",
             "type": "shell"
-        },
-        {
-            "type": "breakpoint",
-            "note": "pause to test ssh connection"
         },
         {
             "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E sh '{{ .Path }}'",
