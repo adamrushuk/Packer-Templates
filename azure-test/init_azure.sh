@@ -4,9 +4,6 @@
 # login
 az login
 
-# list my current service principles
-az ad sp list --show-mine --query '[].{"id":"appId", "tenant":"appOwnerTenantId"}'
-
 # create new service principle for packer
 sp_json=$(az ad sp create-for-rbac --name packer --query "{ client_id: appId, client_secret: password, tenant_id: tenant }")
 
