@@ -5,8 +5,9 @@
 # https://app.circleci.com/pipelines/github/hashicorp/packer/4726/workflows/24332680-9fe6-445d-ac2e-14c0bf75ab1f/jobs/47286/artifacts
 
 # vars
-packer_config_path="./ubuntu.json"
+packer_config_path="./ubuntu-ask-on-error.json"
 # use "packer" for default binary
+# using fixed version (will be v1.5.6)
 packer_binary_path="./packer_linux_amd64"
 
 # enter test folder
@@ -32,7 +33,7 @@ $packer_binary_path validate -syntax-only $packer_config_path
 
 # Run Packer
 echo "Running Packer..."
-$packer_binary_path build -on-error=abort -color=false -force $packer_config_path
+$packer_binary_path build -on-error=ask -color=false $packer_config_path
 
 
 # Troubleshoot
