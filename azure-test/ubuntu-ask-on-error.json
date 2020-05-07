@@ -32,10 +32,7 @@
       },
 
       "location": "{{user `location`}}",
-      "vm_size": "{{user `vm_size`}}",
-
-      "ssh_username": "sysadmin",
-      "ssh_private_key_file": "~/.ssh/id_rsa"
+      "vm_size": "{{user `vm_size`}}"
     }],
     "provisioners": [
         {

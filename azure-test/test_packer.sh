@@ -8,7 +8,8 @@
 packer_config_path="./ubuntu-ask-on-error.json"
 # use "packer" for default binary
 # using fixed version (will be v1.5.6)
-packer_binary_path="./packer_linux_amd64"
+# packer_binary_path="./packer_linux_amd64"
+packer_binary_path="packer"
 
 # enter test folder
 cd azure-test
@@ -32,7 +33,8 @@ echo "Checking syntax..."
 $packer_binary_path validate -syntax-only $packer_config_path
 
 # Run Packer
-echo "Running Packer..."
+# https://www.packer.io/docs/commands/build.html#on-error-cleanup
+echo "Running Packer with -on-error=ask..."
 $packer_binary_path build -on-error=ask -color=false $packer_config_path
 
 
