@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # Testing Packer cleanup issue
-# logged issue: https://github.com/hashicorp/packer/issues/
+# logged issue: https://github.com/hashicorp/packer/issues/9482
 
 # vars
 packer_config_path="./ubuntu.json"
